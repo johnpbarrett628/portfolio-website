@@ -52,6 +52,9 @@ body{background:radial-gradient(circle at 80% 8%,#123568 0,transparent 28%),var(
 
 /* Simplified portfolio narrative */
 .signal-card blockquote{font-family:var(--display);font-size:clamp(28px,2.6vw,44px);line-height:1.15;letter-spacing:-.045em;margin:45px 0;color:#f5f7ff}
+.bio-hero-layout{display:grid;grid-template-columns:1fr 190px;gap:60px;align-items:center}.bio-hero-layout>div>p:last-child{color:var(--muted);font-size:16px}.bio-portrait{width:190px;aspect-ratio:1;display:block;object-fit:cover;object-position:center 35%;border-radius:50%;border:3px solid #8ec9ff;box-shadow:0 0 0 9px rgba(142,201,255,.09),18px 18px 0 rgba(39,117,189,.2)}
+@media(max-width:700px){.bio-hero-layout{grid-template-columns:1fr 105px;gap:24px}.bio-portrait{width:105px;border-width:2px;box-shadow:0 0 0 6px rgba(142,201,255,.09),9px 9px 0 rgba(39,117,189,.2)}}
+@media(max-width:460px){.bio-hero-layout{grid-template-columns:1fr}.bio-hero-layout>div{grid-row:2}.bio-portrait{grid-row:1;width:92px;margin-bottom:18px}.bio-hero-layout h1{font-size:50px}}
 .principles-section{padding-top:0;background:#0a1d3b}
 .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .principles-grid article{padding:38px;min-height:300px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.018)}
