@@ -80,3 +80,32 @@ sectionLinks.forEach((link) => {
   const section = document.querySelector(link.getAttribute('href'));
   if (section) sectionObserver.observe(section);
 });
+
+const campaignTabs = [...document.querySelectorAll('[data-campaign-tab]')];
+const campaignPanels = [...document.querySelectorAll('[data-campaign-panel]')];
+
+const selectCampaign = (campaign) => {
+  campaignTabs.forEach((tab) => {
+    const selected = tab.dataset.campaignTab === campaign;
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+  });
+  campaignPanels.forEach((panel) => {
+    panel.hidden = panel.dataset.campaignPanel !== campaign;
+  });
+};
+
+campaignTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectCampaign(tab.dataset.campaignTab));
+  tab.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let nextIndex = index;
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % campaignTabs.length;
+    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + campaignTabs.length) % campaignTabs.length;
+    if (event.key === 'Home') nextIndex = 0;
+    if (event.key === 'End') nextIndex = campaignTabs.length - 1;
+    campaignTabs[nextIndex].focus();
+    selectCampaign(campaignTabs[nextIndex].dataset.campaignTab);
+  });
+});
