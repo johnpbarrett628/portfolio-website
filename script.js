@@ -109,3 +109,16 @@ campaignTabs.forEach((tab, index) => {
     selectCampaign(campaignTabs[nextIndex].dataset.campaignTab);
   });
 });
+
+document.querySelectorAll('[data-open-campaign]').forEach((link) => {
+  link.addEventListener('click', () => selectCampaign(link.dataset.openCampaign));
+});
+
+const selectLinkedCollection = () => {
+  if (window.location.hash === '#nacs-2026') selectCampaign('event');
+  if (window.location.hash === '#campaign-panel-event') selectCampaign('event');
+  if (window.location.hash === '#campaign-panel-support') selectCampaign('support');
+};
+selectLinkedCollection();
+window.addEventListener('hashchange', selectLinkedCollection);
+
